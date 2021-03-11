@@ -1,5 +1,5 @@
-const updateCart = cart => {
+export const addBeanieToCart = beanieId => {
     return {
-        type: "UPDATE_CART", cart
+        type: "ADD_BEANIE_TO_CART", beanieId
     }
 }

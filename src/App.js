@@ -1,39 +1,13 @@
 import "./App.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateCart } from "./reducers/beanieActions";
+import { addBeanieToCart } from "./reducers/beanieActions";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       cart: [],
-      beanies: [
-        {
-          price: "15",
-          color: "red",
-          size: "medium",
-          id: 2,
-        },
-        {
-          price: "15",
-          color: "red",
-          size: "large",
-          id: 3,
-        },
-        {
-          price: "20",
-          color: "yellow",
-          size: "medium",
-          id: 4,
-        },
-        {
-          price: "25",
-          color: "orange",
-          size: "small",
-          id: 5,
-        },
-      ],
     };
   }
   render() {
@@ -73,7 +47,7 @@ class App extends Component {
           </div>
         </header>
         <div className="wrapper">
-          {this.state.beanies.map((beanie, index) => {
+          {this.props.example2.beanies.map((beanie, index) => {
             return (
               <div className="beanie">
                 <img
@@ -88,16 +62,7 @@ class App extends Component {
 
                 <button
                   onClick={() => {
-                    var cart = this.props.example
-                    this.props.example.push(beanie.id);
-                    this.setState(
-                      {
-                        cart,
-                      },
-                      () => {
-                        console.log(this.props.example);
-                      }
-                    );
+                    this.props.addBeanieToCart(beanie.id);
                   }}
                 >
                   add to cart
@@ -132,12 +97,11 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     example2: state.beanies,
-    example: state.cart
+    example: state.cart,
   };
 }
 const mapDispatchToProps = {
-  updateCart,
+  addBeanieToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-

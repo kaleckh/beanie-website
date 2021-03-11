@@ -30,10 +30,10 @@ var initialState = {
 
 const beanieReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "UPDATE_CART":
+    case "ADD_BEANIE_TO_CART":
       return {
         ...state,
-        cart: action.id,
+        cart: [...state.cart, action.beanieId],
       };
     default:
       return state;
